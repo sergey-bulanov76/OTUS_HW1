@@ -1,18 +1,1 @@
-language: cpp
-before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get -q update
-  - sudo apt-get -y install g++-7
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 60
-script:
-- cmake .
-- cmake --build .
-- cmake --build . --target test
-- cmake --build . --target package
-deploy:
-  provider: script
-  skip_cleanup: true
-  script:
-   - curl -T ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uazbyx:$BINTRAY_API_K "https://api.bintray.com/content/azbyx/azbyx/ip_filter/$TRAVIS_BUILD_NUMBER/ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
-  on:
-    branch: main
+
